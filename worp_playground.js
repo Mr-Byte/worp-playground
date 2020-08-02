@@ -455,7 +455,7 @@ async function init(input) {
         throw new Error(getStringFromWasm0(arg0, arg1));
     };
     imports.wbg.__wbindgen_closure_wrapper378 = function(arg0, arg1, arg2) {
-        var ret = makeMutClosure(arg0, arg1, 111, __wbg_adapter_16);
+        var ret = makeMutClosure(arg0, arg1, 110, __wbg_adapter_16);
         return addHeapObject(ret);
     };
 
