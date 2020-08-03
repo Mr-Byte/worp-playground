@@ -1,4 +1,5 @@
 use worp_dice::expression::Expression;
+use worp_dice::interpreter::ExecutionContext;
 use yew::prelude::*;
 
 pub struct Playground {
@@ -10,6 +11,7 @@ pub struct Playground {
 pub enum Message {
     UpdateInput(String),
     ParseDiceExpression,
+    RunDiceExpression,
 }
 
 impl Component for Playground {
@@ -35,6 +37,17 @@ impl Component for Playground {
                 }
                 Err(error) => self.output = error.to_string(),
             },
+            Message::RunDiceExpression => {
+                let context = ExecutionContext::new();
+                let result = context.eval_expression(&self.input);
+
+                match result {
+                    Ok(result) => {
+                        self.output = result.to_string();
+                    }
+                    Err(error) => self.output = error.to_string(),
+                }
+            }
         }
 
         true
@@ -49,7 +62,8 @@ impl Component for Playground {
                 oninput=self.link.callback(|e: InputData| Message::UpdateInput(e.value))>
                 </textarea>
                 <br />
-                <button onclick=self.link.callback(|_| Message::ParseDiceExpression)>{ "Run" }</button>
+                <button onclick=self.link.callback(|_| Message::RunDiceExpression)>{ "Run" }</button>
+                <button onclick=self.link.callback(|_| Message::ParseDiceExpression)>{ "Show AST" }</button>
                 <h2>{ "Output" }</h2>
                 <div style="white-space: pre-wrap">
                     { &self.output }
