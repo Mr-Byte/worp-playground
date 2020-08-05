@@ -43,7 +43,7 @@ impl Component for Playground {
 
                 match result {
                     Ok(result) => {
-                        self.output = result.to_string();
+                        self.output = result.format_value();
                     }
                     Err(error) => self.output = error.to_string(),
                 }
