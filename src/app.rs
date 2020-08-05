@@ -38,22 +38,14 @@ impl Component for Playground {
                 Err(error) => self.output = error.to_string(),
             },
             Message::RunDiceExpression => {
-                let start = std::time::Instant::now();
                 let context = ExecutionContext::new();
                 let result = context.eval_expression(&self.input);
-                let time = start.elapsed();
 
                 match result {
                     Ok(result) => {
                         self.output = result.format_value();
                     }
-                    Err(error) => {
-                        self.output = format!(
-                            "{}\n\n----\n\nElapsed Time: {} ms",
-                            error.to_string(),
-                            time.as_millis()
-                        );
-                    }
+                    Err(error) => self.output = error.to_string(),
                 }
             }
         }
