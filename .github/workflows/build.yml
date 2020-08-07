@@ -2,9 +2,9 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   schedule:
-    - cron: '0 8 * * *'
+    - cron: "0 8 * * *"
 
 env:
   CARGO_TERM_COLOR: always
@@ -14,27 +14,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           persist-credentials: false
 
       - name: Setup wasm-pack
         uses: jetli/wasm-pack-action@v0.3.0
         with:
-          version: 'latest'
-          
-      - name: Build 
-        run: wasm-pack build --target web --no-typescript --out-dir assets
+          version: "latest"
 
-      - name: Prepare Assets
-        run: rm assets/.gitignore assets/package.json assets/README.md
-      
+      - run: npm install
+      - run: npm run build
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: assets
-
-  
+          FOLDER: dist
