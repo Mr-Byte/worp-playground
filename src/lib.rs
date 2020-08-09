@@ -5,7 +5,7 @@ use worp_dice::syntax::Expression;
 
 #[wasm_bindgen]
 pub fn dice_run(input: &str) -> String {
-    let execution_context = ExecutionContext::new();
+    let execution_context = ExecutionContext::try_new().expect("should have an execution context");
     let window = web_sys::window().expect("should have a window in this context");
     let performance = window
         .performance()
