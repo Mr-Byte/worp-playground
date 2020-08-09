@@ -28,6 +28,10 @@ async function run() {
     document.getElementById("run").addEventListener("click", () => {
         output.setValue(playground.dice_run(editor.getValue()));
     });
+
+    document.getElementById("parse").addEventListener("click", () => {
+        output.setValue(playground.dice_parse(editor.getValue()));
+    });
 }
 
 run();

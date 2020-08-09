@@ -33,7 +33,7 @@ pub fn dice_parse(input: &str) -> String {
     let result = input.parse::<Expression>();
 
     match result {
-        Ok(obj) => obj.to_string(),
+        Ok(expr) => format!("{:#?}", expr),
         Err(err) => err.to_string(),
     }
 }
