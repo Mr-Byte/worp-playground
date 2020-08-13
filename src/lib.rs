@@ -1,7 +1,7 @@
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use wasm_bindgen::prelude::*;
 use worp_dice::runtime::interpreter::context::ExecutionContext;
-use worp_dice::syntax::Expression;
+use worp_dice::syntax::SyntaxTree;
 
 #[wasm_bindgen]
 pub fn dice_run(input: &str) -> String {
@@ -30,7 +30,7 @@ pub fn dice_run(input: &str) -> String {
 
 #[wasm_bindgen]
 pub fn dice_parse(input: &str) -> String {
-    let result = input.parse::<Expression>();
+    let result = input.parse::<SyntaxTree>();
 
     match result {
         Ok(expr) => format!("{:#?}", expr),
