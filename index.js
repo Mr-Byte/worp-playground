@@ -26,7 +26,14 @@ async function run() {
     const playground = await import("./pkg");
 
     document.getElementById("run").addEventListener("click", () => {
-        output.setValue(playground.dice_run(editor.getValue()));
+        const value = editor.getValue();
+        const t0 = performance.now();
+        const result = playground.dice_run(value);
+        const t1 = performance.now();
+
+        const runResult = `${result}\n\n----\nRun finished in ${t1 - t0} ms.`;
+
+        output.setValue(runResult);
     });
 
     document.getElementById("parse").addEventListener("click", () => {
