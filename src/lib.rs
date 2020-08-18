@@ -1,10 +1,10 @@
 use wasm_bindgen::prelude::*;
-use worp_dice::runtime::interpreter::context::ExecutionContext;
+use worp_dice::runtime::interpreter::environment::Environment;
 use worp_dice::syntax::SyntaxTree;
 
 #[wasm_bindgen]
 pub fn dice_run(input: &str) -> String {
-    let execution_context = ExecutionContext::try_new().expect("should have an execution context");
+    let execution_context = Environment::new();
     let result = execution_context.eval_expression(input);
 
     let output = match result {
