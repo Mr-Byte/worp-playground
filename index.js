@@ -35,10 +35,6 @@ async function run() {
 
         output.setValue(runResult);
     });
-
-    document.getElementById("parse").addEventListener("click", () => {
-        output.setValue(playground.dice_parse(editor.getValue()));
-    });
 }
 
 run();
