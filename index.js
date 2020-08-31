@@ -35,6 +35,13 @@ async function run() {
 
         output.setValue(runResult);
     });
+
+    document.getElementById("disassemble").addEventListener("click", () => {
+        const value = editor.getValue();
+        const result = playground.dice_disassemble(value);
+
+        output.setValue(result);
+    });
 }
 
 run();
