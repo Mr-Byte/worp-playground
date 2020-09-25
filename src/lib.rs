@@ -1,5 +1,5 @@
 use wasm_bindgen::prelude::*;
-use worp_dice::Dice;
+use dice::Dice;
 
 #[wasm_bindgen]
 pub fn dice_run(input: &str) -> String {

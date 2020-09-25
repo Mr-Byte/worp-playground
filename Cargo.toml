@@ -11,10 +11,9 @@ wasm-opt = false
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+dice = {git = "https://github.com/mr-byte/dice", branch = "main"}
 wasm-bindgen = "0.2"
 web-sys = "0.3"
-worp-dice = {git = "https://github.com/mr-byte/worp", branch = "main"}
-worp-scroll = {git = "https://github.com/mr-byte/worp", branch = "main"}
 
 [profile.release]
 lto = true
