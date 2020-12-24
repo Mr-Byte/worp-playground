@@ -18,7 +18,7 @@ const output = monaco.editor.create(document.getElementById("output"), {
     minimap: { enabled: false },
     readOnly: true,
     lineNumbers: false,
-    scrollbar: { vertical: "auto" }
+    scrollbar: { vertical: "auto" },
 })
 
 

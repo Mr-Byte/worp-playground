@@ -1,3 +1,5 @@
+use dice::error::fmt::{ErrorFormatter as _, HumanReadableErrorFormatter};
+use dice::error::localization::Locale;
 use dice::Dice;
 use wasm_bindgen::prelude::*;
 
@@ -8,10 +10,17 @@ pub fn dice_run(input: &str) -> String {
 
     let output = match result {
         Ok(obj) => obj.to_string(),
-        Err(err) => err.to_string(),
+        Err(err) => {
+            let mut buffer = String::new();
+            HumanReadableErrorFormatter::new(true)
+                .fmt_pretty(&mut buffer, &err, &Locale::US_ENGLISH)
+                .expect("Failed to format.");
+
+            buffer
+        }
     };
 
-    format!("{}", output,)
+    format!("{}", output)
 }
 
 #[wasm_bindgen]
@@ -24,5 +33,5 @@ pub fn dice_disassemble(input: &str) -> String {
         Err(err) => err.to_string(),
     };
 
-    format!("{}", output,)
+    format!("{}", output)
 }

@@ -5,7 +5,7 @@ name = "worp-playground"
 version = "0.1.0"
 
 [package.metadata.wasm-pack.profile.release]
-wasm-opt = false
+wasm-opt = ["-O4", "--enable-mutable-globals"]
 
 [lib]
 crate-type = ["cdylib", "rlib"]
