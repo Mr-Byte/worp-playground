@@ -5,6 +5,10 @@ const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
+    experiments: {
+        asyncWebAssembly: true
+    },
+    mode: "production",
     entry: './index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
